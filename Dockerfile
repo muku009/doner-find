@@ -27,9 +27,9 @@ RUN npm run build
 # Storage link
 RUN php artisan storage:link || true
 
-# Expose Render port
+# Expose port
 ENV PORT=10000
 EXPOSE 10000
 
-# FIX: Run server using shell so $PORT is numeric
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+# ---- MOST IMPORTANT FIX ----
+CMD bash -lc "php artisan serve --host=0.0.0.0 --port=$PORT"
